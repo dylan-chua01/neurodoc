@@ -3,7 +3,9 @@
 import { useUploadThing } from "@/utils/uploadthing";
 import UploadFormInput from "./upload-form-input";
 import { z } from 'zod';
-import { toast } from "sonner"; // <-- correct import (use `toast`, not `useSonner`)
+import { toast } from "sonner"; // correct import
+import { generatePdfSummary } from "@/actions/upload-actions";
+import { useRef, useState } from "react";
 
 const schema = z.object({
   file: z.instanceof(File, { message: 'Invalid file' })
@@ -12,62 +14,90 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
-    const { startUpload } = useUploadThing('pdfUpLoader', {
-        onClientUploadComplete: () => {
-          console.log('uploaded successfully!');
-        },
-        onUploadError: (err) => {
-          console.error('error occurred while uploading', err);
-        },
-        onUploadBegin: (fileName) => {
-          console.log('upload has begun for', fileName);
-        },
-      });
-      
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { startUpload } = useUploadThing('pdfUpLoader', {
+    onClientUploadComplete: () => {
+      console.log('Uploaded successfully!');
+    },
+    onUploadError: (err) => {
+      console.error('Error occurred while uploading', err);
+    },
+    onUploadBegin: (fileName) => {
+      console.log('Upload has begun for', fileName);
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('📨 Form submitted');
-    
-    const formData = new FormData(e.currentTarget);
-    const file = formData.get('file') as File;
 
-    const validatedFields = schema.safeParse({ file });
+    try {
+      setIsLoading(true);
 
-    console.log('Validation result:', validatedFields);
+      const formData = new FormData(e.currentTarget);
+      const file = formData.get('file') as File;
 
-    if (!validatedFields.success) {
-      toast.error('Invalid file', {
-        description: validatedFields.error.flatten().fieldErrors.file?.[0] ?? 'Please upload a valid PDF',
+      const validatedFields = schema.safeParse({ file });
+
+      console.log('Validation result:', validatedFields);
+
+      if (!validatedFields.success) {
+        toast.error('Invalid file', {
+          description: validatedFields.error.flatten().fieldErrors.file?.[0] ?? 'Please upload a valid PDF',
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      const uploadToast = toast.loading('📄 Uploading PDF...', {
+        description: 'Please wait while we process your file...',
       });
-      return;
-    }
 
-    const uploadToast = toast.loading('📄 Uploading PDF...', {
-      description: 'Please wait while we process your file...',
-    });
+      const resp = await startUpload([file]);
 
-    const resp = await startUpload([file]);
+      toast.dismiss(uploadToast);
 
-    toast.dismiss(uploadToast);
+      if (!resp) {
+        toast.error('❌ Upload failed', {
+          description: 'Please try again with a different file',
+        });
+        setIsLoading(false);
+        return;
+      }
 
-    if (!resp) {
-      toast.error('❌ Upload failed', {
-        description: 'Please try again with a different file',
+      toast.success('📑 File uploaded!', {
+        description: 'Now processing your PDF...',
       });
-      return;
+
+      const result = await generatePdfSummary(resp);
+
+      if (result) {
+        const { data = null } = result;
+
+        if (data) {
+          toast.success('📑 Saving PDF...', {
+            description: 'Hang tight! We are saving your summary!...',
+          });
+          formRef.current?.reset();
+          if (data.summary) {
+            //Save summary to db
+          }
+          // you can also handle data.summary if needed
+        }
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Error occurred', error);
+      formRef.current?.reset();
     }
-
-    toast.success('📑 File uploaded!', {
-      description: 'Now processing your PDF...',
-    });
-
-    // continue to parse, summarize, save to DB, etc.
   };
 
   return (
     <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
-      <UploadFormInput onSubmit={handleSubmit} />
+      <UploadFormInput isLoading={isLoading} ref={formRef} onSubmit={handleSubmit} />
     </div>
   );
 }
