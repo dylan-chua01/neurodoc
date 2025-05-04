@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import EmptySummaryState from "@/components/upload/summaries/empty-summary-state";
 import { SummaryCard } from "@/components/upload/summaries/summary-card";
 import { getSummaries } from "@/lib/summaries";
+import { hasReachedUploadLimit } from "@/lib/user";
 import { currentUser } from "@clerk/nextjs/server";
 import { ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
@@ -13,7 +14,9 @@ export default async function DashboardPage() {
     const user = await currentUser();
     const userId = user?.id;
     if(!userId) return redirect('/sign-in');
-    const uploadLimit = 5
+    
+    const { hasReachedLimit, uploadLimit } = await hasReachedUploadLimit(userId);
+
     const summaries = await getSummaries(userId);
     return (
         <main className="min-h-screen">
@@ -25,7 +28,7 @@ export default async function DashboardPage() {
                             <h1 className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-600 to-gray-900 bg-clip-text text-transparent">Your summaries</h1>
                             <p className="text-gray-600">Transform your PDFs into concise, actionable insights</p>
                         </div>
-                            <Button 
+                            {!hasReachedLimit && (<Button 
                                 variant={'link'}
                                 className="bg-linear-to-r from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 hover:scale-105 transition-all duration-300 group hover:no-underline">
                                 <Link href="/upload" className="flex text-white items-center">
@@ -33,8 +36,9 @@ export default async function DashboardPage() {
                                     New Summary
                                 </Link>    
                             </Button>
+                            )}
                     </div>
-                    <div className="mb-6">
+                    {hasReachedLimit && ( <div className="mb-6">
                         <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 text-rose-800">
                             <p className="text-sm">You've reached the limit of {uploadLimit} uploads on the Basic plan.{' '}
                             <Link href="/#pricing" className="text-rose-800 underline font-medium underline-offset-4 inline-flex items-center">
@@ -43,6 +47,7 @@ export default async function DashboardPage() {
                             </p>
                         </div>
                     </div>
+                    )}
 
                     {summaries.length === 0 ? (<EmptySummaryState />) : (
                     <div className="grid grids-col-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 sm:px-0">

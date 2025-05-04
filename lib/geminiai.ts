@@ -1,41 +1,56 @@
 import { SUMMARY_SYSTEM_PROMPT } from "@/utils/prompts";
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+// Check for API key
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("❌ Missing GEMINI_API_KEY. Please define it in .env.local");
+}
+
+// Initialize Gemini
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const generateSummaryFromGemini = async (pdfText: string) => {
   try {
-    // Construct the prompt as a single text string
     const prompt = `${SUMMARY_SYSTEM_PROMPT}
 
 Transform this document into an engaging, easy-to-read summary with contextually relevant emojis and proper markdown formatting:
 
 ${pdfText}`;
 
-    // Pass the contents as an array with the correct structure
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-pro-002", // or "gemini-2.0-flash" for faster results
+      model: "gemini-2.0-flash",
       contents: [
-        { 
+        {
+          role: "user",
           parts: [{ text: prompt }],
-          role: 'user' // Role is placed at the content level
-        }
+        },
       ],
     });
 
-    // Check if response.text is available
-    if (!response.text) {
-      throw new Error('Empty response from Gemini API');
+    // Some SDKs may return .candidates[0].content.parts[0].text instead of .text
+    const summary = (response as any)?.text ||
+                    (response as any)?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!summary) {
+      throw new Error("❌ Empty response from Gemini API");
     }
 
-    // Return the generated summary text
-    return response.text;
+    return summary;
 
   } catch (error: any) {
+    // Handle Gemini rate limit
     if (error?.status === 429) {
-      throw new Error("RATE_LIMIT_EXCEEDED");
+      throw new Error("❌ RATE_LIMIT_EXCEEDED");
     }
-    console.error("Gemini API Error:", error);
+
+    // Full error trace
+    console.error("🚨 Gemini API Error:", {
+      message: error.message,
+      stack: error.stack,
+      cause: error.cause,
+      error,
+    });
+
     throw error;
   }
 };
