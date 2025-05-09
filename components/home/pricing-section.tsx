@@ -1,76 +1,153 @@
 import { cn } from "@/lib/utils";
 import { pricingPlans } from "@/utils/constants";
-import { ArrowRight, CheckIcon } from "lucide-react";
+import { ArrowRight, Check, Coffee, HandHelping, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { MotionDiv, MotionH3 } from "../common/motion-wrapper";
 
 type PriceType = {
-    name: string;
-    price: number | string;
-    description: string;
-    items: string[];
-    id: string;
-    paymentLink: string;
-    priceId: string;
+  name: string;
+  price: number | string;
+  description: string;
+  items: string[];
+  id: string;
+  paymentLink: string;
+  priceId: string;
+  billing?: string;
 }
 
-const PricingCard = ({ name, price, description, items, id, paymentLink }: PriceType) => {
-    return (
-        <div className="relative w-full max-w-lg hover:scale-105 hover:transition-all duration-300"> 
-            <div className={cn("relative flex flex-col h-full gap-4 lg:gap-8 z-10 p-8 border-1[px] border-gray-500/20 rounded-2xl",
-                id === 'pro' && 'border-rose-500 gap-5 border-2'
-            )}>
-            <div className="flex justify-between items-center gap-4">
-                <div>
-                    <p className="text-lg lg:text-xl font-bold capitalize">{name}</p>
-                    <p className="text-base-content/80 mt-2">{description}</p>
-                </div>
-                </div>
+const PricingCard = ({ name, price, description, items, id, paymentLink, billing = "month" }: PriceType) => {
+  const isPremium = id === 'pro';
+  const isBasic = id === 'basic';
+  const isWeekly = id === 'weekly';
+  
+  return (
+    <MotionDiv
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.2 }}
+      className={cn(
+        "relative w-full max-w-sm rounded-xl border bg-white shadow-sm transition-all",
+        isPremium ? "border-[#006747] ring-1 ring-[#006747]/20" : "border-gray-200"
+      )}
+    >
 
-                <div className="flex gap-2">
-                    <p className="text-5xl tracking-tight font-extrabold">
-                        ${price}
-                    </p>
-                    <div className="flex flex-col justify-end mb-[4px]">
-                        <p className="text-xs uppercase font-semibold">USD</p>
-                        <p className="text-xs">/month</p>
-                    </div>
-                </div>
-                <div className="space-y-2.5 leading-relaxed text-base flex-1">
-                    {items.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                        <CheckIcon size={18} />
-                        <span>{item}</span>
-                    </li>
-                ))}
-                </div>
-                <div className="space-y-2 flex justify-center w-full">
-                    <Link 
-                        href={paymentLink} 
-                        className={cn("w-full rounded-full flex items-center justify-center gap-2 bg-linear-to-r from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 text-white border-2 py-2",
-                        id === 'pro' ? 'border-rose-900': 'border-rose-100 from-rose-400 to-rose-500'
-                        )}
-                        >
-                        Buy Now <ArrowRight size={18} />
-                    </Link>
-            </div>
+        {isWeekly && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <div className="flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-orange-400 to-orange-500 text-white text-xs font-medium shadow-md">
+            <Coffee className="h-3 w-3 mr-1" />
+            Just a cup of coffee!
+          </div>
         </div>
-    </div>
-    );
+      )}
+      {isPremium && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <div className="flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-medium shadow-md">
+            <Sparkles className="h-3 w-3 mr-1" />
+            Most Popular
+          </div>
+        </div>
+      )}
+      
+      {isBasic && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <div className="flex items-center justify-center px-4 py-1 rounded-full bg-gradient-to-r from-orange-400 to-orange-500 text-white text-xs font-medium shadow-md">
+            <HandHelping className="h-3 w-3 mr-1" />
+                For only $2 more?
+          </div>
+        </div>
+      )}
+      
+      <div className="p-8">
+        <div className="mb-6">
+          <h3 className={cn(
+            "text-2xl font-bold mb-2",
+            isPremium ? "text-[#006747]" : "text-gray-900"
+          )}>
+            {name}
+          </h3>
+          <p className="text-gray-600">{description}</p>
+        </div>
+
+        <div className="mb-8">
+          <div className="flex items-end gap-1">
+            <span className={cn(
+              "text-5xl font-bold tracking-tight",
+              isPremium ? "text-[#006747]" : "text-gray-900"
+            )}>
+              ${price}
+            </span>
+            <span className="text-gray-500 text-sm mb-1">/{billing}</span>
+          </div>
+          {isWeekly && (
+            <div className="mt-2 flex items-center text-gray-500 text-sm">
+              <Coffee className="h-4 w-4 mr-1 text-orange-500" />
+              <span>Less than your weekly coffee run!</span>
+            </div>
+          )}
+        </div>
+
+        <ul className="space-y-3 mb-8">
+          {items.map((item, idx) => (
+            <li key={idx} className="flex items-start">
+              <Check className={cn(
+                "h-5 w-5 flex-shrink-0 mt-0.5 mr-2",
+                isPremium ? "text-[#006747]" : "text-gray-500"
+              )} />
+              <span className="text-gray-700">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Link
+          href={paymentLink}
+          className={cn(
+            "w-full flex items-center justify-center gap-2 rounded-lg py-3 font-medium transition-all",
+            isPremium 
+              ? "bg-gradient-to-r from-[#006747] to-[#008D5E] text-white hover:shadow-lg hover:shadow-[#006747]/20"
+              : isBasic
+                ? "bg-gradient-to-r from-orange-400 to-orange-500 text-white hover:shadow-lg hover:shadow-orange-400/20"
+                : "bg-gray-50 text-[#006747] border border-[#006747]/20 hover:bg-[#006747]/5"
+          )}
+        >
+          Get Started <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </MotionDiv>
+  );
 };
 
 export default function PricingSection() {
-    return (
-        <section className="relative overflow-hidden" id="pricing">
-        <div className="py-12 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12">
-            <div className="flex items-center justify-center w-full pb-12">
-                <h2 className="uppercase font-bold text-xl mb-8 text-rose-500">Pricing</h2>
-            </div>
-            <div className="relative flex justify-center flex-col lg:flex-row items-center lg:items-stretch gap-8">
-                {pricingPlans.map((plan) => (
-                     <PricingCard key={plan.id} {...plan} />
-                ))}
-            </div>
+  return (
+    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-white to-gray-50" id="pricing">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <MotionDiv 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-[#006747]/10 text-[#006747] text-sm font-medium mb-4"
+          >
+            Simple Pricing
+          </MotionDiv>
+          <MotionH3
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl font-bold text-gray-900 max-w-3xl mx-auto"
+          >
+            Choose the perfect plan for your needs
+          </MotionH3>
         </div>
-        </section>
-    );
-} 
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {pricingPlans.map((plan) => (
+            <PricingCard 
+              key={plan.id} 
+              {...plan} 
+              billing={plan.id === 'weekly' ? 'week' : 'month'} 
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,11 +1,12 @@
 @import 'tailwindcss';
+@import 'tailwindcss/utilities';
 
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --color-background: hsl(var(--background));
@@ -36,146 +37,178 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --color-chart-1: hsl(var(--chart-1));
-  --color-chart-2: hsl(var(--chart-2));
-  --color-chart-3: hsl(var(--chart-3));
-  --color-chart-4: hsl(var(--chart-4));
-  --color-chart-5: hsl(var(--chart-5));
-
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/montserrat-regular.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/montserrat-medium.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/montserrat-semibold.woff2') format('woff2');
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-medium tracking-tight;
+  }
+
+  a {
+    @apply text-primary hover:text-primary/80 transition-colors;
+  }
+
+  button {
+    @apply transition-all duration-200 ease-in-out;
   }
 }
 
 @layer utilities {
-  body {
-    font-family: Arial, Helvetica, sans-serif;
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .cathay-gradient {
+    background: linear-gradient(135deg, #006747 0%, #007A53 50%, #008D5E 100%);
+  }
+
+  .cathay-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #006747 0%, #007A53 50%, #008D5E 100%);
+  }
+
+  .highlight-shadow {
+    box-shadow: 0 4px 20px rgba(0, 107, 71, 0.15);
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
   }
 }
 
 @layer base {
   :root {
+    /* Cathay Pacific Green Palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 164 100% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 164 100% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 350 89% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 350 33% 96%;
-    --secondary-foreground: 350 89% 60%;
-    --muted: 350 33% 96%;
-    --muted-foreground: 215 25% 27%;
-    --accent: 350 33% 18%;
-    --accent-foreground: 350 89% 60%;
-    --destructive: 350 89% 50%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 350 33% 90%;
-    --input: 350 33% 90%;
-    --ring: 350 89% 60%;
+    --popover-foreground: 164 100% 10%;
+    --primary: 164 100% 22%; /* Cathay Green #006747 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 164 30% 95%;
+    --secondary-foreground: 164 100% 22%;
+    --muted: 164 30% 95%;
+    --muted-foreground: 164 100% 30%;
+    --accent: 164 100% 90%;
+    --accent-foreground: 164 100% 22%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 164 30% 85%;
+    --input: 164 30% 85%;
+    --ring: 164 100% 22%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 350 89% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 350 33% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 350 33% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 350 33% 25%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 350 89% 40%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 350 33% 17.5%;
-    --input: 350 33% 17.5%;
-    --ring: 350 89% 60%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 164 100% 5%;
+    --foreground: 164 30% 95%;
+    --card: 164 100% 7%;
+    --card-foreground: 164 30% 95%;
+    --popover: 164 100% 7%;
+    --popover-foreground: 164 30% 95%;
+    --primary: 164 100% 28%; /* Slightly brighter green for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 164 100% 15%;
+    --secondary-foreground: 164 30% 95%;
+    --muted: 164 100% 15%;
+    --muted-foreground: 164 30% 70%;
+    --accent: 164 100% 20%;
+    --accent-foreground: 164 30% 95%;
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 164 100% 15%;
+    --input: 164 100% 15%;
+    --ring: 164 100% 28%;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  h1 {
-    @apply text-4xl md:text-6xl xl:text-7xl font-bold;
-  }
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  h2 {
-    @apply text-xl lg:text-3xl font-medium;
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  h3 {
-    @apply text-2xl lg:text-4xl font-medium;
-  }
-
-  a {
-    @apply hover:cursor-pointer;
-  }
-
-  button {
-    @apply hover:cursor-pointer bg-rose-600 hover:bg-rose-700;
-  }
-
-  @keyframes gradient-x {
-    0%,
-    100% {
-      background-size: 200% 100%;
-      background-position: left center;
-    }
-    50% {
-      background-size: 200% 100%;
-      background-position: right center;
-    }
-  }
-
-  .animate-gradient-x {
-    animation: gradient-x 3s ease infinite;
+  to { 
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+/* Custom container */
 @utility container {
   margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
+  padding-inline: 1.5rem;
+  max-width: 100%;
+  
+  @media (width >= 640px) {
+    padding-inline: 2rem;
   }
-  @media (width >= 1400px) {
-    max-width: 1400px;
+  
+  @media (width >= 1280px) {
+    max-width: 1280px;
+  }
+  
+  @media (width >= 1536px) {
+    max-width: 1536px;
   }
 }
