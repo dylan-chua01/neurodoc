@@ -4,10 +4,19 @@ import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { ConversationalRetrievalQAChain } from 'langchain/chains';
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { getVectorStore } from '@/lib/db';
+import { AIMessage, HumanMessage } from '@langchain/core/messages';
 
 export async function POST(req: Request) {
   try {
-    const { fileUrl, question, chatHistory } = await req.json();
+    const { fileUrl, question, chatHistory = [] } = await req.json();
+    console.log('Request data:', { fileUrl, question, chatHistory });
+
+    if (!question || typeof question !== 'string') {
+      return NextResponse.json(
+        { error: "Invalid or missing question" },
+        { status: 400 }
+      );
+    }
 
     if (!fileUrl || typeof fileUrl !== 'string') {
       return NextResponse.json(
@@ -48,11 +57,19 @@ export async function POST(req: Request) {
       { returnSourceDocuments: true }
     );
 
+
     // 6. Get answer
+
+    const formattedHistory = chatHistory.map((msg: string) => [
+      new HumanMessage(msg),
+      new AIMessage("") // Empty response since we don't have assistant replies in history
+    ]).flat();
+    
     const response = await chain.call({
-      question,
-      chat_history: chatHistory || []
+      question: question.trim(),
+      chat_history: formattedHistory
     });
+
 
     return NextResponse.json({
       answer: response.text,
@@ -62,12 +79,19 @@ export async function POST(req: Request) {
       }))
     });
 
+    
+
   } catch (error) {
-    console.error('API error:', error);
+    console.error('API error details:', {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
     return NextResponse.json(
       { 
         error: "Failed to process question",
-        details: error instanceof Error ? error.message : 'Unknown error'
+      details: process.env.NODE_ENV === 'development' 
+        ? error instanceof Error ? error.message : String(error)
+        : undefined
       },
       { status: 500 }
     );
