@@ -1,9 +1,12 @@
+// app/(logged-in)/summaries/[id]/page.tsx
+
 import BgGradient from "@/components/common/bg-gradient";
 import ChatSidebar from "@/components/common/chat-side-bar";
 import { SourceInfo } from "@/components/upload/summaries/source-info";
 import { SummaryHeader } from "@/components/upload/summaries/summary-header";
 import { SummaryViewer } from "@/components/upload/summaries/summary-viewer";
 import { getSummaryById } from "@/lib/summaries";
+import { currentUser } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 
 export default async function SummaryPage({ 
@@ -11,10 +14,14 @@ export default async function SummaryPage({
 }: { 
   params: { id: string } 
 }) {
-  // Ensure params is fully resolved before accessing its properties
-  const { id } = await params;
+  const { id } = params;
   const summary = await getSummaryById(id);
+  const user = await currentUser(); // Get Clerk user
   
+  if (!summary) {
+    return <div>Summary not found</div>;
+  }
+
   const { 
     title, 
     summary_text, 
@@ -61,7 +68,10 @@ export default async function SummaryPage({
         {/* Chat Sidebar */}
         <div className="w-full lg:w-[360px] shrink-0">
           <div className="sticky top-6 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col">
-            <ChatSidebar fileUrl={summary.original_file_url} />
+            <ChatSidebar 
+              fileUrl={original_file_url} 
+              userId={user?.id} // Clerk user ID
+            />
           </div>
         </div>
       </div>

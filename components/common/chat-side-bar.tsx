@@ -6,20 +6,24 @@ import { Button } from "@/components/ui/button";
 import { Send, FileText, Sparkles } from "lucide-react";
 import MessageList from "./message-list";
 import { useState, useEffect, useRef } from 'react';
+import { ChatMessage } from '@langchain/core/messages';
 
 type Props = {
   fileUrl: string;
+  userId?: string;
 };
 
 const ChatSidebar = ({ fileUrl }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [initialMessages, setInitialMessages] = useState<ChatMessage[]>([]);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
-  const { messages, input, handleInputChange, append } = useChat({
+  const { messages, input, handleInputChange, append, setMessages} = useChat({
     api: '/api/chat',
     body: { fileUrl },
   });
+  
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -27,6 +31,48 @@ const ChatSidebar = ({ fileUrl }: Props) => {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
+
+  //load chat history
+  useEffect(() => {
+    const loadHistory = async () => {
+      try {
+        const res = await fetch('/api/get-chat-history', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fileUrl }),
+        });
+  
+        if (res.ok) {
+          const data = await res.json();
+          if (data.history && data.history.length > 0) {
+            const restoredMessages = data.history.flatMap((entry: any) => [
+              { 
+                id: `user-${entry.created_at}`, 
+                role: 'user' as const, 
+                content: entry.question 
+              },
+              { 
+                id: `assistant-${entry.created_at}`, 
+                role: 'assistant' as const, 
+                content: entry.answer 
+              },
+            ]);
+            setInitialMessages(restoredMessages);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load chat history:', error);
+      }
+    };
+  
+    loadHistory();
+  }, [fileUrl]);
+
+  useEffect(() => {
+    if (initialMessages.length > 0) {
+      setMessages(initialMessages);
+    }
+  }, [initialMessages, setMessages]);
 
   // Focus input on mount
   useEffect(() => {
@@ -37,13 +83,14 @@ const ChatSidebar = ({ fileUrl }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmedInput = input.trim();
-    if (!trimmedInput || isLoading) return;
+
+    const currentQuestion = inputRef.current?.value.trim() || '';
+    if (!currentQuestion || isLoading) return;
   
     setIsLoading(true);
     try {
       await append({
-        content: trimmedInput,
+        content: currentQuestion,
         role: 'user',
       });
   
@@ -52,19 +99,42 @@ const ChatSidebar = ({ fileUrl }: Props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fileUrl,
-          question: trimmedInput, // Ensure question is defined
+          question: currentQuestion,
           chatHistory: messages
             .filter(m => m.role === 'user')
-            .slice(0, -1) // Exclude current question
             .map(m => m.content)
         }),
       });
-
+  
       if (!response.ok) {
-        throw new Error(await response.text());
+        const errorText = await response.text();
+        throw new Error(errorText || 'Failed to get AI response');
       }
 
       const { answer, sources } = await response.json();
+
+      if (currentQuestion && answer) {
+        try {
+            const saveResponse = await fetch('/api/save-chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  fileUrl,
+                  question: currentQuestion,
+                  answer,
+                  sources: sources || []
+                }),
+              });
+        
+              if (!saveResponse.ok) {
+                const saveError = await saveResponse.json();
+                console.warn('Chat saved locally but failed in database:', saveError);
+          }
+        } catch (saveError) {
+          console.error('Database save error:', saveError);
+        }
+      }
+  
 
       await append({
         content: answer,
@@ -89,7 +159,7 @@ const ChatSidebar = ({ fileUrl }: Props) => {
   };
 
   return (
-    <div className="flex flex-col h-[600px] max-h-[80vh]">
+    <div className="flex flex-col h-[1500px] max-h-[100vh]">
       {/* Header */}
       <div className="p-4 border-b bg-gradient-to-r from-emerald-50 to-teal-50 flex items-center gap-2">
         <FileText className="h-5 w-5 text-emerald-600" />

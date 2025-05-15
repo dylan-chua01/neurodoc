@@ -1,10 +1,19 @@
 // lib/db.ts
-"use server";
+// "use server";
 import { neon } from "@neondatabase/serverless";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
+import { Pool } from "pg";
 
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+export const db = pool;
 export async function getDbConnection() {
   if (!process.env.DATABASE_URL) {
     throw new Error('Neon Database URL is not defined');

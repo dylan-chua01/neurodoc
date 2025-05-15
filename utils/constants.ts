@@ -6,6 +6,7 @@ export const pricingPlans = [
         name: 'Weekly',
         description: 'Perfect for one-off projects',
         price: 5,
+        chatLimit: 10,
         items: [
             '5 PDF summaries per week',
             'Standard processing speed',
@@ -20,11 +21,13 @@ export const pricingPlans = [
         name: 'Basic',
         description: 'Perfect for personal use',
         price: 7,
+        chatLimit: 3,
         items: [
             '25 PDF summaries per month',
             'Standard processing speed',
             'Email suport',
-            'Makrdown Export'
+            'Makrdown Export',
+            '10 questions per Document'
         ],
         paymentLink: isDev ? 'https://buy.stripe.com/test_00gfZs9LU6XreJycMM': '',
         priceId: isDev ? 'price_1RKbioRggn37AxFT4vWWTQ1P': '',
@@ -41,6 +44,7 @@ export const pricingPlans = [
             'Priority processing',
             'Email and WhatsApp Support',
             'Markdown Export',
+            'Unlimited questions per Document'
         ],
     }
 ];
