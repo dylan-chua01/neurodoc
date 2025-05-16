@@ -2,6 +2,7 @@
 
 import BgGradient from "@/components/common/bg-gradient";
 import ChatSidebar from "@/components/common/chat-side-bar";
+import NotesSection from "@/components/common/notes";
 import { SourceInfo } from "@/components/upload/summaries/source-info";
 import { SummaryHeader } from "@/components/upload/summaries/summary-header";
 import { SummaryViewer } from "@/components/upload/summaries/summary-viewer";
@@ -16,7 +17,7 @@ export default async function SummaryPage({
 }) {
   const { id } = params;
   const summary = await getSummaryById(id);
-  const user = await currentUser(); // Get Clerk user
+  const user = await currentUser();
   
   if (!summary) {
     return <div>Summary not found</div>;
@@ -38,39 +39,52 @@ export default async function SummaryPage({
       <BgGradient className="from-[#006747]/20 via-[#007A53]/15 to-[#008D5E]/10" />
       
       <div className="container mx-auto px-4 py-8 md:py-12 flex flex-col lg:flex-row gap-6 md:gap-8">
-        {/* Main Content */}
-        <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm p-6 md:p-8">
-          <SummaryHeader 
-            title={title} 
-            createdAt={created_at} 
-            readingTime={readingTime} 
-          />
-          
-          {file_name && (
-            <div className="mt-6">
-              <SourceInfo  
-                title={title}
-                summaryText={summary_text}
-                fileName={file_name}
-                createdAt={created_at}
-                originalFileUrl={original_file_url}
-              />
+        {/* Main Content - Left Column */}
+        <div className="flex-1 flex flex-col gap-6">
+          {/* Summary Content */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm p-6 md:p-8">
+            <SummaryHeader 
+              title={title} 
+              createdAt={created_at} 
+              readingTime={readingTime} 
+            />
+            
+            {file_name && (
+              <div className="mt-6">
+                <SourceInfo  
+                  title={title}
+                  summaryText={summary_text}
+                  fileName={file_name}
+                  createdAt={created_at}
+                  originalFileUrl={original_file_url}
+                />
+              </div>
+            )}
+            
+            <div className="mt-8">
+              <Suspense fallback={<div className="h-64 w-full flex items-center justify-center">Loading summary...</div>}>
+                <SummaryViewer summary={summary_text} />
+              </Suspense>
             </div>
-          )}
-          
-          <div className="mt-8 lg:pr-8">
-            <Suspense fallback={<div className="h-64 w-full flex items-center justify-center">Loading summary...</div>}>
-              <SummaryViewer summary={summary_text} />
-            </Suspense>
+          </div>
+
+          {/* Notes Section - Now below main content */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm p-6 border border-gray-100">
+            <NotesSection 
+              fileUrl={original_file_url} 
+              userId={user?.id}
+              className="min-h-[300px]" // Added minimum height
+            />
           </div>
         </div>
         
-        {/* Chat Sidebar */}
-        <div className="w-full lg:w-[360px] shrink-0">
-          <div className="sticky top-6 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 flex flex-col">
+        {/* Chat Sidebar - Right Column */}
+        <div className="w-full lg:w-[400px] shrink-0">
+          <div className="sticky top-6 bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
             <ChatSidebar 
               fileUrl={original_file_url} 
-              userId={user?.id} // Clerk user ID
+              userId={user?.id}
+              className="h-[600px]" // Fixed height for chat
             />
           </div>
         </div>
