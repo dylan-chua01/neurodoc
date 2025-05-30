@@ -112,7 +112,9 @@ export default function CTASection() {
                 <h3 className="text-2xl font-bold mb-3">Try it free for 7 days</h3>
                 <p className="text-white/80 mb-6">No credit card required. Cancel anytime.</p>
                 <div className="px-4 py-3 bg-white/10 rounded-lg inline-block">
-                  <p className="text-sm font-medium">Join now!</p>
+                  <Button>
+                  <Link href="/#pricing" className="text-sm font-medium">Join now!</Link>
+                  </Button>
                 </div>
               </div>
             </div>

@@ -5,6 +5,7 @@ import PricingSection from "@/components/home/pricing-section";
 import CTASection from "@/components/home/cta-section";
 import { UseCasesSection } from "@/components/home/use-case-section";
 import ChatWithPdfFeature from "@/components/home/conversation-section";
+import QuizPromoSection from "@/components/home/quiz-section";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <HeroSection />
         <HowItWorksSection />
         <ChatWithPdfFeature />
+        <QuizPromoSection />
         <UseCasesSection />
         <PricingSection />
         <CTASection />

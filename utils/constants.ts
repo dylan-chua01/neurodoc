@@ -36,10 +36,11 @@ export const pricingPlans = [
         id: 'pro',
         name: 'Pro',
         description: 'For professionals and teams',
-        price: 12,
+        price: 20,
         paymentLink: isDev ? 'https://buy.stripe.com/test_9AQfZsf6ea9Dbxm5kl': '',
         priceId: isDev ? 'price_1RKbkXRggn37AxFTIC1oZeVg': '',
         items: [
+            'Start with a 7 day free trial',
             'Unlimited PDF summaries',
             'Priority processing',
             'Email and WhatsApp Support',

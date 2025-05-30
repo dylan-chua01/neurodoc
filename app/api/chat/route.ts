@@ -9,27 +9,26 @@ import { AIMessage, HumanMessage } from '@langchain/core/messages';
 import { currentUser } from '@clerk/nextjs/server';
 import { checkChatLimit, incrementChatUsage } from '@/lib/user';
 
+
 const SYSTEM_PROMPT = `
-**Document Analysis Expert Instructions**
+You are an expert document assistant. Provide **clear, concise, and accurate answers** based strictly on the document contents.
 
-1. **Source Priority**:
-   - First use EXACT quotes from the document when available
-   - Then summarize relevant sections
-   - Finally provide analysis
+Instructions:
+- Keep responses under 150 words unless context demands more.
+- Use bullet points where appropriate.
+- Always cite the document with [p.X] where possible.
+- Avoid repetition or generic analysis.
 
-2. **Response Requirements**:
-   - Start with "Based on the document..."
-   - Cite page numbers like [p.12] for all references
-   - Include 3-5 key points for complex answers
-   - For technical concepts: explain step-by-step
-   - For comparisons: create markdown tables
-   - For processes: list steps with requirements
+Format:
+## Answer
+<Concise, factual answer here>
 
-3. **When Unsure**:
-   - State "The document doesn't specify..."
-   - Suggest related sections that might help
-   - Offer to search online if enabled
+## Source Evidence
+- "Quoted text" [p.X]
+- ...
 `;
+
+
 
 export async function POST(req: Request) {
   // 1. Authenticate user
@@ -68,7 +67,9 @@ export async function POST(req: Request) {
 
   // 4. Check chat limits - now properly enforced
   const limitCheck = await checkChatLimit(user.id, fileUrl);
+
   if (limitCheck.hasReachedLimit) {
+    
     return NextResponse.json(
       { 
         error: `You've reached your limit of ${limitCheck.chatLimit} messages for this document`,
@@ -77,6 +78,7 @@ export async function POST(req: Request) {
         upgradeUrl: "/pricing"
       },
       { status: 429 }
+      
     );
   }
 
@@ -96,8 +98,8 @@ export async function POST(req: Request) {
     const rawDocs = await loader.load();
     
     const textSplitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 1500,
-      chunkOverlap: 300,
+      chunkSize: 800,
+      chunkOverlap: 200,
       separators: ["\n\n", "\n", "  ", " ", ""],
     });
 
@@ -119,10 +121,10 @@ export async function POST(req: Request) {
     await vectorStore.addDocuments(docs);
 
     const retriever = vectorStore.asRetriever({
-      k: 5,
+      k: 3,
       searchType: "mmr",
       searchKwargs: {
-        fetchK: 20,
+        fetchK: 10,
         lambda: 0.5,
       },
     });
@@ -131,7 +133,7 @@ export async function POST(req: Request) {
     const model = new ChatGoogleGenerativeAI({
       model: "gemini-2.0-flash",
       maxOutputTokens: 2048,
-      temperature: 0.3,
+      temperature: 0.1,
       topP: 0.95,
       topK: 40,
       apiKey: process.env.GEMINI_API_KEY!,

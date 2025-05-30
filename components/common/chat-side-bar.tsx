@@ -88,6 +88,8 @@ const ChatSidebar = ({ fileUrl }: Props) => {
     if (!currentQuestion || isLoading) return;
   
     setIsLoading(true);
+
+    handleInputChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
     try {
       await append({
         content: currentQuestion,
@@ -188,7 +190,7 @@ const ChatSidebar = ({ fileUrl }: Props) => {
   <div className="flex gap-2 items-center">
     <Input
       ref={inputRef}
-      value={input}
+      value={isLoading ? 'Thinking...' : input}
       onChange={handleInputChange}
       placeholder="Ask about this document..."
       disabled={isLoading}

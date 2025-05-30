@@ -111,7 +111,7 @@ const NotesSection = ({ fileUrl, userId, className }: NotesSectionProps) => {
       <Textarea
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder="Write your notes here... Markdown is supported!"
+        placeholder="Write your notes here..."
         rows={isExpanded ? 15 : 8}
         disabled={loading}
         className={`resize-none focus:ring-emerald-200 focus:border-emerald-300 transition-all ${

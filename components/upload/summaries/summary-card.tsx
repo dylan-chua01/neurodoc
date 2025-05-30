@@ -2,9 +2,10 @@
 import { Card } from "@/components/ui/card";
 import DeleteButton from "./delete-button";
 import Link from "next/link";
-import { FileText, Clock, ArrowRight, Check, Loader } from "lucide-react";
+import { FileText, Clock, ArrowRight, ArrowRightCircle, Brain } from "lucide-react";
 import { format, formatDistanceToNow, isAfter, subDays } from "date-fns";
 import { cn, formatFileName } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const StatusIndicator = ({ status }: { status: string }) => {
   return (
@@ -37,8 +38,11 @@ export function SummaryCard({ summary }: { summary: any }) {
 
   return (
     <Card className="relative h-full overflow-hidden transition-all hover:shadow-md hover:-translate-y-1 group border border-[#006747]/20">
-      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-        <DeleteButton summaryId={summary.id} />
+      {/* Top-right buttons container */}
+      <div className="absolute top-3 right-3 flex gap-2">
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+          <DeleteButton summaryId={summary.id} />
+        </div>
       </div>
       
       <Link href={`summaries/${summary.id}`} className="block h-full">
@@ -69,6 +73,25 @@ export function SummaryCard({ summary }: { summary: any }) {
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
             </div>
           </div>
+          {summary.original_file_url && (
+                          <div className="transition-all justify-between items-center mt-auto ml-auto duration-300 transform translate-y-2">
+                            <Button
+                              asChild
+                              className="relative bg-gradient-to-r from-emerald-300 to-teal-300 hover:from-emerald-400 hover:to-emerald-400 text-white shadow-lg transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium border-0 group/button"
+                            >
+                              <Link href={`summaries/${summary.id}/quiz`}>
+                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-teal-50 opacity-0 transition-opacity duration-200"></div>
+                                
+                                <div className="relative flex items-center gap-2">
+                                  <Brain className="w-4 h-4" />
+                                  <span style={{color: "black"}}>Test Knowledge</span>
+                                  <ArrowRightCircle className="w-4 h-4 transition-transform" />
+                                </div>
+                              </Link>
+                            </Button>
+                          </div>
+                        )}
+          
         </div>
       </Link>
     </Card>

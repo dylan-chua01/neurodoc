@@ -59,7 +59,7 @@ export async function checkChatLimit(userId: string, fileUrl: string) {
     // Fail open in production, closed in development
     return {
       hasReachedLimit: process.env.NODE_ENV === 'development',
-      chatLimit: 20,
+      chatLimit: 3,
       currentUsage: 0
     };
   }
