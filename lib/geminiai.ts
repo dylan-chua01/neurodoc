@@ -23,7 +23,7 @@ Transform this document into an engaging, easy-to-read summary with contextually
 ${pdfText}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-1.5-flash",
       contents: [
         {
           role: "user",

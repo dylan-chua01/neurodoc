@@ -27,7 +27,6 @@ export const pricingPlans = [
             'Standard processing speed',
             'Email suport',
             'Makrdown Export',
-            '10 questions per Document'
         ],
         paymentLink: isDev ? 'https://buy.stripe.com/test_00gfZs9LU6XreJycMM': '',
         priceId: isDev ? 'price_1RKbioRggn37AxFT4vWWTQ1P': '',
@@ -45,7 +44,8 @@ export const pricingPlans = [
             'Priority processing',
             'Email and WhatsApp Support',
             'Markdown Export',
-            'Unlimited questions per Document'
+            'Unlimited questions per Document',
+            'Access to Quiz'
         ],
     }
 ];

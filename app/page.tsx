@@ -18,7 +18,6 @@ export default function Home() {
         <QuizPromoSection />
         <UseCasesSection />
         <PricingSection />
-        <CTASection />
       </div>
       
       

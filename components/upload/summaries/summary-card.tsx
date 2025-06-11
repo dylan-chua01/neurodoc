@@ -1,4 +1,3 @@
-// summary-card.tsx
 import { Card } from "@/components/ui/card";
 import DeleteButton from "./delete-button";
 import Link from "next/link";
@@ -44,7 +43,8 @@ export function SummaryCard({ summary }: { summary: any }) {
           <DeleteButton summaryId={summary.id} />
         </div>
       </div>
-      
+
+      {/* Summary main content link */}
       <Link href={`summaries/${summary.id}`} className="block h-full">
         <div className="p-5 h-full flex flex-col gap-4">
           <div className="flex items-start gap-3">
@@ -61,7 +61,7 @@ export function SummaryCard({ summary }: { summary: any }) {
               </div>
             </div>
           </div>
-          
+
           <p className="text-gray-600 line-clamp-3 text-sm pl-1">
             {summary.summary_text}
           </p>
@@ -73,27 +73,27 @@ export function SummaryCard({ summary }: { summary: any }) {
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
             </div>
           </div>
-          {summary.original_file_url && (
-                          <div className="transition-all justify-between items-center mt-auto ml-auto duration-300 transform translate-y-2">
-                            <Button
-                              asChild
-                              className="relative bg-gradient-to-r from-emerald-300 to-teal-300 hover:from-emerald-400 hover:to-emerald-400 text-white shadow-lg transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium border-0 group/button"
-                            >
-                              <Link href={`summaries/${summary.id}/quiz`}>
-                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-teal-50 opacity-0 transition-opacity duration-200"></div>
-                                
-                                <div className="relative flex items-center gap-2">
-                                  <Brain className="w-4 h-4" />
-                                  <span style={{color: "black"}}>Test Knowledge</span>
-                                  <ArrowRightCircle className="w-4 h-4 transition-transform" />
-                                </div>
-                              </Link>
-                            </Button>
-                          </div>
-                        )}
-          
         </div>
       </Link>
+
+      {/* Quiz button placed outside of Link to avoid hydration error */}
+      {summary.original_file_url && (
+        <div className="transition-all justify-between items-center mt-2 ml-auto duration-300 transform translate-y-2 px-5 pb-4">
+          <Button
+            asChild
+            className="relative bg-gradient-to-r from-emerald-300 to-teal-300 hover:from-emerald-400 hover:to-emerald-400 text-white shadow-lg transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium border-0 group/button"
+          >
+            <Link href={`summaries/${summary.id}/quiz`}>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-teal-50 opacity-0 transition-opacity duration-200"></div>
+              <div className="relative flex items-center gap-2">
+                <Brain className="w-4 h-4" />
+                <span style={{ color: "black" }}>Test Knowledge</span>
+                <ArrowRightCircle className="w-4 h-4 transition-transform" />
+              </div>
+            </Link>
+          </Button>
+        </div>
+      )}
     </Card>
   );
 }

@@ -7,6 +7,7 @@ import { toast } from "sonner"; // correct import
 import { generatePdfSummary, storePdfSummaryAction } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import LoadingSkeleton from "./loading-skeleton";
 
 const schema = z.object({
   file: z.instanceof(File, { message: 'Invalid file' })
@@ -112,8 +113,10 @@ export default function UploadForm() {
   };
 
   return (
+    <>
     <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
       <UploadFormInput isLoading={isLoading} ref={formRef} onSubmit={handleSubmit} />
     </div>
+    </>
   );
 }
