@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroLearn - Master Your Mind. Unlock Your Potential.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">NeuroLearn</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home">Home</a></li>
+                <li class="nav-item"><a href="#about">About Us</a></li>
+                <li class="nav-item"><a href="#why-us">Why Us</a></li>
+                <li class="nav-item"><a href="#features">Features</a></li>
+                <li class="nav-item"><a href="#demo">Demo</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Master Your Mind. Unlock Your Potential.</h1>
+            <p>Transform your learning with AI-powered neuroscience techniques that adapt to your unique cognitive patterns</p>
+            
+            <div class="signup-form">
+                <input type="email" class="email-input" placeholder="Enter your email address" required>
+                <button class="cta-button" onclick="handleSignup()">Get Started Free</button>
+                <p class="trust-text">✨ Trusted by 12,000+ learners worldwide</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Revolutionizing Learning Through Neuroscience</h2>
+                    <p>At NeuroLearn, we believe that everyone has unlimited potential. Our mission is to unlock that potential through cutting-edge neuroscience research and AI technology.</p>
+                    <p>Founded by a team of neuroscientists, AI researchers, and education experts, we're committed to making learning more effective, enjoyable, and accessible for everyone.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>Learning Improvement</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50%</h3>
+                            <p>Faster Retention</p>
+                        </div>
+                        <div class="stat">
+                            <h3>12K+</h3>
+                            <p>Active Learners</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="brain-animation">
+                        <div class="neural-network">
+                            <div class="node"></div>
+                            <div class="node"></div>
+                            <div class="node"></div>
+                            <div class="node"></div>
+                            <div class="connection"></div>
+                            <div class="connection"></div>
+                            <div class="connection"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <h2>Why Choose NeuroLearn?</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">🧠</div>
+                    <h3>Science-Backed Methods</h3>
+                    <p>Our techniques are based on the latest neuroscience research and proven learning methodologies.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🤖</div>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>Advanced algorithms adapt to your learning style, pace, and preferences in real-time.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">📊</div>
+                    <h3>Measurable Results</h3>
+                    <p>Track your progress with detailed analytics and see concrete improvements in your learning.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🌟</div>
+                    <h3>Expert Support</h3>
+                    <p>Access to learning coaches and neuroscience experts whenever you need guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Advanced Learning Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Personalized Learning Paths</h3>
+                    <p>AI adapts to your unique learning patterns and cognitive preferences for maximum effectiveness and retention.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Neural Optimization</h3>
+                    <p>Leverage neuroplasticity research to build stronger neural pathways and enhance long-term memory formation.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Spaced Repetition System</h3>
+                    <p>Advanced techniques including spaced repetition and active recall for lasting knowledge retention.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Monitor your cognitive load and learning progress with detailed insights and performance metrics.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Multi-Modal Learning</h3>
+                    <p>Engage visual, auditory, and kinesthetic learning styles through interactive multimedia content.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Gamified Experience</h3>
+                    <p>Stay motivated with achievement systems, progress tracking, and social learning features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="demo-content">
+                <div class="demo-text">
+                    <h2>Experience the Future of Learning</h2>
+                    <p>NeuroLearn combines cutting-edge AI with neuroscience to optimize your learning experience. Our platform monitors cognitive load, provides real-time feedback, and adapts to ensure peak learning efficiency.</p>
+                    <ul class="demo-features">
+                        <li>✅ Adaptive difficulty adjustment</li>
+                        <li>✅ Cognitive load monitoring</li>
+                        <li>✅ Personalized study schedules</li>
+                        <li>✅ Progress visualization</li>
+                    </ul>
+                    <button class="demo-button" onclick="handleDemo()">Try Interactive Demo</button>
+                </div>
+                
+                <div class="demo-visual">
+                    <div class="brain-icon">🧠</div>
+                    <div class="pulse-rings">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Ready to transform your learning journey? We're here to help you unlock your potential.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>📧 Email:</strong>
+                            <span>hello@neurolearn.ai</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>📱 Phone:</strong>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>🌍 Location:</strong>
+                            <span>San Francisco, CA</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Facebook</a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>NeuroLearn</h3>
+                    <p>Transforming minds through science and technology.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#about">About</a>
+                    <a href="#features">Features</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest in learning science and AI.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeuroLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
