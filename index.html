@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroLearn - Master Your Mind. Unlock Your Potential.</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -20,6 +20,7 @@
                 <li class="nav-item"><a href="#why-us">Why Us</a></li>
                 <li class="nav-item"><a href="#demo">Demo</a></li>
                 <li class="nav-item"><a href="#contact">Contact</a></li>
+                <li class="nav-item"><a href="./src/pages/news.html">The Product</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -30,7 +31,7 @@
     </nav>
 
     <!-- Hero Section -->
-       <section class="hero" id="home">
+    <section class="hero" id="home">
         <div class="hero-content">
             <h1>Master Your Mind. Unlock Your Potential.</h1>
             <p>Transform your learning with AI-powered neuroscience techniques that adapt to your unique cognitive patterns</p>
@@ -40,8 +41,6 @@
                 <p class="trust-text">✨ Trusted by 12,000+ learners worldwide</p>
             </div>
         </div>
-    </section>
-
     </section>
 
     <!-- About Us Section -->
@@ -123,31 +122,145 @@
         </div>
     </section>
 
-
-
     <!-- Demo Section -->
     <section class="demo" id="demo">
-        <div class="container">
-            <div class="demo-content">
-                <div class="demo-text">
-                    <h2>Experience the Future of Learning</h2>
-                    <p>NeuroLearn combines cutting-edge AI with neuroscience to optimize your learning experience. Our platform monitors cognitive load, provides real-time feedback, and adapts to ensure peak learning efficiency.</p>
-                    <ul class="demo-features">
-                        <li>✅ Adaptive difficulty adjustment</li>
-                        <li>✅ Cognitive load monitoring</li>
-                        <li>✅ Personalized study schedules</li>
-                        <li>✅ Progress visualization</li>
-                    </ul>
-                </div>
-                
-                <div class="demo-visual">
-                    <div class="brain-icon">🧠</div>
-                    <div class="pulse-rings">
-                        <div class="pulse-ring"></div>
-                        <div class="pulse-ring"></div>
-                        <div class="pulse-ring"></div>
+        <div class="slideshow-container">
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+            </div>
+    
+            <!-- Slide 1: Welcome -->
+            <div class="slide active">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h1 class="slide-text-h1">NeuroLearn</h1>
+                        <p>Welcome to the future of personalized learning. Where neuroscience meets artificial intelligence to revolutionize how you learn, remember, and grow.</p>
+                        <ul class="features-list">
+                            <li>AI-Powered Learning Optimization</li>
+                            <li>Real-Time Cognitive Monitoring</li>
+                            <li>Personalized Study Pathways</li>
+                        </ul>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="brain-icon">🧠</div>
+                        <div class="pulse-rings">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                        </div>
                     </div>
                 </div>
+            </div>
+    
+            <!-- Slide 2: Adaptive Learning -->
+            <div class="slide">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2>Adaptive Intelligence</h2>
+                        <p>Our AI continuously adapts to your learning style, pace, and cognitive load. No two learners are the same, and neither should their learning experience be.</p>
+                        <ul class="features-list">
+                            <li>Dynamic difficulty adjustment</li>
+                            <li>Learning style recognition</li>
+                            <li>Optimal break timing</li>
+                            <li>Memory consolidation optimization</li>
+                        </ul>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="neural-network">
+                            <div class="brain-icon">🤖</div>
+                            <div class="pulse-rings">
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring"></div>
+                                <div class="pulse-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Slide 3: Progress Tracking -->
+            <div class="slide">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2>Track Your Progress</h2>
+                        <p>Visualize your learning journey with detailed analytics and insights. Understand your cognitive patterns and optimize your study sessions for maximum retention.</p>
+                        <ul class="features-list">
+                            <li>Cognitive load visualization</li>
+                            <li>Learning curve analysis</li>
+                            <li>Memory retention tracking</li>
+                            <li>Performance predictions</li>
+                        </ul>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="chart-container">
+                            <h3 style="color: white; margin-bottom: 10px;">Learning Progress</h3>
+                            <div class="chart-bars">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Weekly Performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Slide 4: Personalization -->
+            <div class="slide">
+                <div class="slide-content">
+                    <div class="slide-text">
+                        <h2>Personalized Experience</h2>
+                        <p>Every brain is unique. NeuroLearn creates a completely personalized learning environment tailored to your individual cognitive profile and learning goals.</p>
+                        <ul class="features-list">
+                            <li>Custom learning pathways</li>
+                            <li>Personalized study schedules</li>
+                            <li>Individual cognitive profiling</li>
+                            <li>Adaptive content delivery</li>
+                        </ul>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="brain-icon">👤</div>
+                        <div class="pulse-rings">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Slide 5: Join Now -->
+            <div class="slide">
+                <div class="slide-content centered">
+                    <div class="slide-text">
+                        <h2>Ready to Transform Your Learning?</h2>
+                        <p>Join thousands of learners who have already revolutionized their education with NeuroLearn. Start your journey to optimized learning today.</p>
+                        <ul class="features-list">
+                            <li>Free 30-day trial</li>
+                            <li>No credit card required</li>
+                            <li>Instant access to all features</li>
+                            <li>24/7 support</li>
+                        </ul>
+                    </div>
+                    <div class="slide-visual">
+                        <div class="brain-icon">🚀</div>
+                        <div class="pulse-rings">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="progress-indicator">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
         </div>
     </section>

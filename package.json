@@ -13,15 +13,17 @@
     "picocolors": "^1.1.1",
     "picomatch": "^4.0.2",
     "postcss": "^8.5.5",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.6.2",
     "rollup": "^4.43.0",
     "source-map-js": "^1.2.1",
     "tinyglobby": "^0.2.14"
   },
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview"
-},
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

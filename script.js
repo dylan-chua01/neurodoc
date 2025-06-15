@@ -164,3 +164,56 @@ document.addEventListener('DOMContentLoaded', function() {
     window.handleDemo = handleDemo;
     window.handleSignup = handleSignup;
 });
+
+
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show current slide and activate dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Update counter
+            document.getElementById('currentSlide').textContent = index + 1;
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-advance slides every 6 seconds
+        setInterval(nextSlide, 6000);
+
+        // Optional: Click on dots to navigate
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlideIndex = index;
+                showSlide(currentSlideIndex);
+            });
+        });
+
+        // Optional: Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlideIndex);
+            }
+        });
