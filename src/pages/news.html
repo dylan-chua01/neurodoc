@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Ultimate Learning Companion for Everyone - NeuroLearn</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
     <link rel="stylesheet" href="/styles/news-styles.css">
 </head>
 <body>
@@ -14,12 +15,12 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
       <div class="nav-container">
-          <a href="#home" class="logo">
+          <a href="/" class="logo">
               <img src="/images/neuroLearn_logo.png" alt="NeuroLearn Logo" height="100" width="100" class="logo-img">
               <span>NeuroLearn</span>
           </a>
           <ul class="nav-menu" id="nav-menu">
-              <li class="nav-item"><a href="/index.html">Home</a></li>
+              <li class="nav-item"><a href="/">Home</a></li>
               <li class="nav-item"><a href="/index.html/#about">About Us</a></li>
               <li class="nav-item"><a href="/index.html/#why-us">Why Us</a></li>
               <li class="nav-item"><a href="/index.html#demo">Demo</a></li>
@@ -44,7 +45,7 @@
             <div class="article-meta fade-in">
                 <div class="meta-item">
                     <i class="fas fa-calendar"></i>
-                    <span>June 15, 2025</span>
+                    <span>June 11, 2025</span>
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-clock"></i>
@@ -112,6 +113,15 @@
                                 <span class="stat-number">🌍</span>
                                 <span class="stat-label"><strong>Accessible</strong> - Multiple languages supported</span>
                             </div>
+                            <div class="stat-card">
+                                <span class="stat-number">📈</span>
+                                <span class="stat-label"><strong>Trackable</strong> – Progress dashboards keep you motivated</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">🧠</span>
+                                <span class="stat-label"><strong>Science-Based</strong> – Built on proven neuroscience strategies</span>
+                            </div>
+                            
                         </div>
 
                         <h2>Need More Convincing? 👇</h2>
@@ -133,7 +143,7 @@
 
                         <div style="text-align: center; margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 15px; border: 2px solid #667eea;">
                             <h3 style="color: #667eea; margin-bottom: 1rem;">🚀 Try NeuroLearn Today!</h3>
-                            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Unlock a better way to learn with your personal AI companion</p>
+                            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center;">Unlock a better way to learn with your personal AI companion</p>
                             <button style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Start Learning Now</button>
                         </div>
                     </div>
@@ -146,11 +156,6 @@
                         <div class="author-info">
                             <h4>NeuroLearn Team</h4>
                             <p>Our passionate team of educators, AI researchers, and learning specialists dedicated to revolutionizing education through personalized AI-powered learning experiences.</p>
-                            <div class="author-social">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
                         </div>
                     </div>
                 </article>
@@ -193,88 +198,129 @@
                 </aside>
             </div>
         </div>
-
-            <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-          <div class="footer-content">
-              <div class="footer-brand">
-                  <h3>NeuroLearn</h3>
-                  <p>Transforming minds through science and technology.</p>
-              </div>
-              <div class="footer-links">
-                  <h4>Quick Links</h4>
-                  <a href="#about">About</a>
-                  <a href="#features">Features</a>
-                  <a href="#contact">Contact</a>
-                  <a href="#">Privacy Policy</a>
-              </div>
-              <div class="footer-newsletter">
-                  <h4>Stay Updated</h4>
-                  <p>Get the latest in learning science and AI.</p>
-                  <div class="newsletter-form">
-                      <input type="email" placeholder="Your email">
-                      <button type="button">Subscribe</button>
-                  </div>
-              </div>
-          </div>
-          <div class="footer-bottom">
-              <p>&copy; 2025 NeuroLearn. All rights reserved.</p>
-          </div>
-      </div>
-  </footer>
     </main>
 
-    <script>
-        // Smooth scrolling progress bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
-        });
+            <!-- Footer -->
+            
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-brand">
+                            <h3>NeuroLearn</h3>
+                            <p>Transforming minds through science and technology.</p>
+                        </div>
+                        <div class="footer-links">
+                            <h4>Quick Links</h4>
+                            <a href="/src/pages/news.html">NeuroLearn</a>
+                            <a href="/index.html/#features">The App</a>
+                            <a href="#contact">Contact</a>
+                            <a href="/src/pages/privacy-policy.html">Privacy Policy</a>
+                        </div>
+                        
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 NeuroLearn. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
 
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <script>
+    // Smooth scrolling progress bar
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = '0.2s';
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Share functionality
-        document.querySelector('.share-btn.copy').addEventListener('click', () => {
-            navigator.clipboard.writeText(window.location.href);
-            alert('Link copied to clipboard!');
-        });
-
-        // Newsletter form
-        document.querySelector('.newsletter-form button').addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = document.querySelector('.newsletter-form input').value;
-            if (email) {
-                alert('Thank you for subscribing! You\'ll receive our latest insights soon.');
-                document.querySelector('.newsletter-form input').value = '';
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationDelay = '0.2s';
+                entry.target.classList.add('fade-in');
             }
         });
+    }, observerOptions);
 
-        // Comment form
-        document.querySelector('.comment-form form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your comment! It will be reviewed and published shortly.');
-            e.target.reset();
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+
+    // UPDATED SHARE FUNCTIONALITY
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get article details
+        const articleTitle = document.querySelector('.article-title').textContent;
+        const articleUrl = window.location.href;
+        const articleDescription = document.querySelector('.article-subtitle').textContent;
+
+        // Twitter share
+        document.querySelector('.share-btn.twitter').addEventListener('click', () => {
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(articleTitle)}&url=${encodeURIComponent(articleUrl)}&hashtags=NeuroLearn,AILearning,Education`;
+            window.open(twitterUrl, '_blank', 'width=600,height=400');
         });
-    </script>
+
+        // LinkedIn share
+        document.querySelector('.share-btn.linkedin').addEventListener('click', () => {
+            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`;
+            window.open(linkedinUrl, '_blank', 'width=600,height=400');
+        });
+
+        // Facebook share
+        document.querySelector('.share-btn.facebook').addEventListener('click', () => {
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}&quote=${encodeURIComponent(articleTitle)}`;
+            window.open(facebookUrl, '_blank', 'width=600,height=400');
+        });
+
+        // Copy link functionality with visual feedback
+        document.querySelector('.share-btn.copy').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(articleUrl);
+                
+                // Visual feedback
+                const button = document.querySelector('.share-btn.copy span');
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+                
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = articleUrl;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                alert('Link copied to clipboard!');
+            }
+        });
+    });
+
+    // Newsletter form
+    document.querySelector('.newsletter-form button')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = document.querySelector('.newsletter-form input').value;
+        if (email) {
+            alert('Thank you for subscribing! You\'ll receive our latest insights soon.');
+            document.querySelector('.newsletter-form input').value = '';
+        }
+    });
+
+    // Comment form
+    document.querySelector('.comment-form form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your comment! It will be reviewed and published shortly.');
+        e.target.reset();
+    });
+</script>
 </body>
 </html>

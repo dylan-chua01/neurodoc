@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+    <title>Privacy Policy - NeuroLearn</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 1.5rem;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item a:hover {
+            color: #667eea;
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: white;
+            min-height: calc(100vh - 80px);
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f4f8 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-header::before {
+            content: '🛡️';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .privacy-header h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .privacy-header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .effective-date {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .privacy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            margin: 15px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .data-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .data-type {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .data-type h4 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .data-type p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .contact-item .icon {
+            font-size: 1.2rem;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Enhanced Footer Styles - Building on existing structure */
+.footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #ffffff;
+    padding: 3rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 1rem 0;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.footer-links h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #667eea;
+    border-radius: 1px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-links a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #667eea;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    padding-left: 20px;
+}
+
+.footer-links a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-links a::before {
+        display: none;
+    }
+    
+    .footer-links a:hover {
+        padding-left: 0;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="/images/neuroLearn_logo.png" alt="NeuroLearn Logo" height="100" width="100" class="logo-img">
+                <span>NeuroLearn</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/">Home</a></li>
+                <li class="nav-item"><a href="/#about">About Us</a></li>
+                <li class="nav-item"><a href="/#why-us">Why Us</a></li>
+                <li class="nav-item"><a href="/#demo">Demo</a></li>
+                <li class="nav-item"><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="privacy-header">
+                <h1>🛡️ Privacy Policy</h1>
+                <p class="subtitle" style="color: black;">Your privacy is our top priority</p>
+                <div class="effective-date">Effective Date: June 15, 2025</div>
+            </div>
+
+            <!-- Privacy Content -->
+            <div class="privacy-content">
+                <div class="intro-text">
+                    At <strong>NeuroLearn</strong>, your privacy is a top priority. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our platform.
+                </div>
+
+                <!-- Section 1: Information We Collect -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">1</span>
+                        Information We Collect
+                    </h2>
+                    <p>We may collect the following types of information:</p>
+                    
+                    <div class="data-types">
+                        <div class="data-type">
+                            <h4>Personal Information</h4>
+                            <p>Such as your name, email address, and account credentials when you sign up.</p>
+                        </div>
+                        <div class="data-type">
+                            <h4>Learning Data</h4>
+                            <p>Including your session history, quiz results, progress tracking, and preferences.</p>
+                        </div>
+                        <div class="data-type">
+                            <h4>Uploaded Content</h4>
+                            <p>Such as PDFs or documents you upload for personalized learning.</p>
+                        </div>
+                        <div class="data-type">
+                            <h4>Usage Data</h4>
+                            <p>Including browser type, device type, IP address, and interaction logs.</p>
+                        </div>
+                        <div class="data-type">
+                            <h4>Cookies and Analytics</h4>
+                            <p>To improve performance and personalize your experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: How We Use Your Information -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">2</span>
+                        How We Use Your Information
+                    </h2>
+                    <p>We use your information to:</p>
+                    <ul>
+                        <li>Provide and improve our services</li>
+                        <li>Personalize your learning experience</li>
+                        <li>Track progress and generate insights</li>
+                        <li>Respond to your inquiries and provide support</li>
+                        <li>Communicate updates, features, and promotions</li>
+                        <li>Ensure security, prevent fraud, and comply with legal obligations</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3: Sharing Your Information -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">3</span>
+                        Sharing Your Information
+                    </h2>
+                    
+                    <div class="highlight-box">
+                        <h3>We do NOT sell your personal data</h3>
+                        <p style="color: white;">Your privacy and trust are fundamental to our mission</p>
+                    </div>
+                    
+                    <p>We may share your data with:</p>
+                    <ul>
+                        <li><strong>Service Providers:</strong> trusted third parties who help us operate our platform (e.g., cloud storage, analytics)</li>
+                        <li><strong>Legal Authorities:</strong> if required by law or in response to a legal request</li>
+                        <li><strong>Affiliates or Partners:</strong> only with your consent</li>
+                    </ul>
+                </div>
+
+                <!-- Section 4: Data Storage and Security -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">4</span>
+                        Data Storage and Security
+                    </h2>
+                    <p>We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the internet is 100% secure. We encourage you to use strong passwords and safeguard your credentials.</p>
+                </div>
+
+                <!-- Section 5: Your Rights -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">5</span>
+                        Your Rights
+                    </h2>
+                    <p>Depending on your location, you may have the right to:</p>
+                    <ul>
+                        <li>Access, update, or delete your personal data</li>
+                        <li>Object to or restrict processing</li>
+                        <li>Withdraw consent at any time</li>
+                        <li>Request data portability</li>
+                    </ul>
+                    <p>To exercise these rights, please contact us at <strong>hello@neurolearn.ai</strong>.</p>
+                </div>
+
+                <!-- Section 6: Children's Privacy -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">6</span>
+                        Children's Privacy
+                    </h2>
+                    <p>NeuroLearn is designed to be accessible and beneficial to learners of all ages. However, we recommend that children under the age of 13 use the platform under the supervision of a parent or legal guardian.
+
+                        We do not knowingly collect personal data from children under 13 without parental consent. If we learn that we have unintentionally collected such information, we will take appropriate steps to delete it.</p>
+                </div>
+
+                <!-- Section 7: Changes to This Policy -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">7</span>
+                        Changes to This Policy
+                    </h2>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.</p>
+                </div>
+
+                <!-- Section 8: Contact Us -->
+                <div class="section">
+                    <h2>
+                        <span class="section-number">8</span>
+                        Contact Us
+                    </h2>
+                    <p>If you have questions or concerns about this Privacy Policy or your data, please contact us:</p>
+                    
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="icon">📧</span>
+                                <span>hello@neurolearn.ai</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="icon">📱</span>
+                                <span>+673 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="icon">🌍</span>
+                                <span>Bandar Seri Begawan, Brunei</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="back-to-home">
+                    <a href="/" class="back-button">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>NeuroLearn</h3>
+                    <p>Transforming minds through science and technology.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="/src/pages/news.html">NeuroLearn</a>
+                    <a href="/index.html/#features">The App</a>
+                    <a href="#contact">Contact</a>
+                    <a href="/src/pages/privacy-policy.html">Privacy Policy</a>
+                </div>
+                
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeuroLearn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
