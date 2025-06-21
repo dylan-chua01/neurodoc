@@ -1,0 +1,71 @@
+{
+  "node": {
+    "7f3002d9734a31f1830160b833473d7be285db8f52": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    },
+    "7fd18dd6a20744f76a60378a8837db5a3896210ae6": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    },
+    "7ff4a4c304bcc5f328eb45e27fbc1d7f77ab65f9f2": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    },
+    "7f009dc0c904a42a4e05b3346e426767988ff5d0a5": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    },
+    "403983b837ac29b130e4236a0705fcc8c6094c5b3e": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    },
+    "402a84d8633a5ee3cd7021612d6dbfa4441b3c5c54": {
+      "workers": {
+        "app/(logged-in)/upload/page": {
+          "moduleId": "[project]/.next-internal/server/app/(logged-in)/upload/page/actions.js { ACTIONS_MODULE0 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/actions/upload-actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(logged-in)/upload/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}

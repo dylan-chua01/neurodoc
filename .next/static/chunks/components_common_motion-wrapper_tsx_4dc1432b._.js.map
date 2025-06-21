@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/dylanchua/Documents/Personal/Code/neurodocument/components/common/motion-wrapper.tsx"],"sourcesContent":["'use client';\n\nimport { motion } from 'motion/react';\n\nexport const MotionDiv = motion.div;\n\nexport const MotionSection = motion.section;\n\nexport const MotionH1 = motion.h1;\n\nexport const MotionH2 = motion.h2;\n\nexport const MotionH3 = motion.h3;\n\nexport const MotionP = motion.p;\n\nexport const MotionSpan = motion.span;\n\nexport const MotionCircle = motion.circle;"],"names":[],"mappings":";;;;;;;;;;AAEA;AAFA;;AAIO,MAAM,YAAY,qNAAA,CAAA,SAAM,CAAC,GAAG;AAE5B,MAAM,gBAAgB,qNAAA,CAAA,SAAM,CAAC,OAAO;AAEpC,MAAM,WAAW,qNAAA,CAAA,SAAM,CAAC,EAAE;AAE1B,MAAM,WAAW,qNAAA,CAAA,SAAM,CAAC,EAAE;AAE1B,MAAM,WAAW,qNAAA,CAAA,SAAM,CAAC,EAAE;AAE1B,MAAM,UAAU,qNAAA,CAAA,SAAM,CAAC,CAAC;AAExB,MAAM,aAAa,qNAAA,CAAA,SAAM,CAAC,IAAI;AAE9B,MAAM,eAAe,qNAAA,CAAA,SAAM,CAAC,MAAM","debugId":null}}]
+}

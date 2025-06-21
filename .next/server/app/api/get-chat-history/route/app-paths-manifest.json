@@ -1,0 +1,3 @@
+{
+  "/api/get-chat-history/route": "app/api/get-chat-history/route.js"
+}

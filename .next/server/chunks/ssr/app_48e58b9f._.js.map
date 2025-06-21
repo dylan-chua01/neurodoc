@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 25, "column": 0}, "map": {"version":3,"sources":["file:///Users/dylanchua/Documents/Personal/Code/neurodocument/app/%28logged-in%29/summaries/%5Bid%5D/quiz/page.tsx"],"sourcesContent":["// app/(logged-in)/summaries/[id]/quiz/page.tsx\n\nimport React from \"react\";\n\ninterface QuizPageProps {\n  params: { id: string };\n}\n\nexport default function QuizPage({ params }: QuizPageProps) {\n  return (\n    <div className=\"p-6\">\n      <h1 className=\"text-xl font-semibold\">Quiz for Summary ID: {params.id}</h1>\n      {/* You can fetch quiz data using useEffect or server components */}\n    </div>\n  );\n}\n"],"names":[],"mappings":"AAAA,+CAA+C;;;;;;AAQhC,SAAS,SAAS,EAAE,MAAM,EAAiB;IACxD,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAG,WAAU;;gBAAwB;gBAAsB,OAAO,EAAE;;;;;;;;;;;;AAI3E","debugId":null}}]
+}
